@@ -1,0 +1,14 @@
+# Ignore the `build/` directory in the package root.
+/build
+
+# Python environments, build artifacts, and caches
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.pytest_cache/
+
+# Raw model outputs: large, regenerable, and provider-specific.
+# Scorecards under results/ are the committed artifacts.
+/runs

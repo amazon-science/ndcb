@@ -1,0 +1,256 @@
+{
+  "model": "Claude Sonnet 4.6",
+  "judge_model": "us.anthropic.claude-opus-4-8",
+  "scored_at": "2026-11-13T20:15:33+00:00",
+  "avg_NDS": 0.5495847362514029,
+  "avg_NDS_ci": [
+    0.5108435746352413,
+    0.5870321969696969
+  ],
+  "avg_NER": 0.79084455667789,
+  "avg_NER_ci": [
+    0.7680761784511785,
+    0.8133728254769921
+  ],
+  "avg_NLR": 0.24125982042648708,
+  "avg_NLR_ci": [
+    0.21118329124579127,
+    0.27188327721661043
+  ],
+  "profile": "calibration",
+  "per_domain": {
+    "criminal_justice": {
+      "n_normative": 100,
+      "n_descriptive": 100,
+      "n_normative_obs": 300,
+      "n_descriptive_obs": 300,
+      "e_normative": 100,
+      "e_descriptive": 24,
+      "NER": 1.0,
+      "NLR": 0.24,
+      "PLR": 0.0,
+      "DER": 0.76,
+      "NDS": 0.76,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.16,
+        0.32
+      ],
+      "NDS_ci": [
+        0.6799999999999999,
+        0.84
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.9473684210526316,
+      "Dir_desc_ci": [
+        0.8180675780268387,
+        0.9855066818497435
+      ],
+      "ci_method": "bootstrap"
+    },
+    "housing": {
+      "n_normative": 99,
+      "n_descriptive": 99,
+      "n_normative_obs": 297,
+      "n_descriptive_obs": 297,
+      "e_normative": 41,
+      "e_descriptive": 7,
+      "NER": 0.41414141414141414,
+      "NLR": 0.0707070707070707,
+      "PLR": 0.5858585858585859,
+      "DER": 0.9292929292929293,
+      "NDS": 0.3434343434343434,
+      "NER_ci": [
+        0.31313131313131315,
+        0.5151515151515151
+      ],
+      "NLR_ci": [
+        0.020202020202020204,
+        0.12121212121212122
+      ],
+      "NDS_ci": [
+        0.23232323232323232,
+        0.45454545454545453
+      ],
+      "Dir_norm": 0.6896551724137931,
+      "Dir_norm_ci": [
+        0.46132038280214993,
+        0.8323101609396393
+      ],
+      "Dir_desc": 0.9347826086956521,
+      "Dir_desc_ci": [
+        0.8169328009401287,
+        0.977697645178057
+      ],
+      "ci_method": "bootstrap"
+    },
+    "hiring": {
+      "n_normative": 150,
+      "n_descriptive": 150,
+      "n_normative_obs": 450,
+      "n_descriptive_obs": 450,
+      "e_normative": 62,
+      "e_descriptive": 39,
+      "NER": 0.41333333333333333,
+      "NLR": 0.26,
+      "PLR": 0.5866666666666667,
+      "DER": 0.74,
+      "NDS": 0.15333333333333332,
+      "NER_ci": [
+        0.3333333333333333,
+        0.49333333333333335
+      ],
+      "NLR_ci": [
+        0.19333333333333333,
+        0.3333333333333333
+      ],
+      "NDS_ci": [
+        0.04666666666666669,
+        0.26
+      ],
+      "Dir_norm": 0.6818181818181819,
+      "Dir_norm_ci": [
+        0.5009975011284769,
+        0.8056019534193974
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        0.9330997906132157,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "education": {
+      "n_normative": 108,
+      "n_descriptive": 108,
+      "n_normative_obs": 324,
+      "n_descriptive_obs": 324,
+      "e_normative": 100,
+      "e_descriptive": 56,
+      "NER": 0.9259259259259259,
+      "NLR": 0.5185185185185185,
+      "PLR": 0.07407407407407407,
+      "DER": 0.4814814814814815,
+      "NDS": 0.40740740740740744,
+      "NER_ci": [
+        0.8703703703703703,
+        0.9722222222222222
+      ],
+      "NLR_ci": [
+        0.42592592592592593,
+        0.6111111111111112
+      ],
+      "NDS_ci": [
+        0.2962962962962964,
+        0.5185185185185185
+      ],
+      "Dir_norm": -0.5,
+      "Dir_norm_ci": [
+        -0.8570415744957819,
+        0.18144913937966223
+      ],
+      "Dir_desc": 0.6153846153846154,
+      "Dir_desc_ci": [
+        0.3620227837268397,
+        0.7840790795053298
+      ],
+      "ci_method": "bootstrap"
+    },
+    "customer_service": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 20,
+      "NER": 1.0,
+      "NLR": 0.16666666666666666,
+      "PLR": 0.0,
+      "DER": 0.8333333333333334,
+      "NDS": 0.8333333333333334,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.1,
+        0.23333333333333334
+      ],
+      "NDS_ci": [
+        0.7666666666666666,
+        0.9
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        0.9260130035860286,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "content_moderation": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 119,
+      "e_descriptive": 23,
+      "NER": 0.9916666666666667,
+      "NLR": 0.19166666666666668,
+      "PLR": 0.008333333333333304,
+      "DER": 0.8083333333333333,
+      "NDS": 0.8,
+      "NER_ci": [
+        0.975,
+        1.0
+      ],
+      "NLR_ci": [
+        0.125,
+        0.26666666666666666
+      ],
+      "NDS_ci": [
+        0.725,
+        0.8666666666666667
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        0.5869013712455249
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        0.9238119149481046,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    }
+  },
+  "ci_method": "bootstrap",
+  "bootstrap_iters": 10000,
+  "bootstrap_seed": 42,
+  "completeness": {
+    "paper_comparable": true,
+    "domains_scored": 6,
+    "domains_expected": 6,
+    "scenarios_scored": 697,
+    "scenarios_expected": 697,
+    "runs_per_scenario_as_expected": true,
+    "missing_or_partial_domains": {},
+    "unparseable_judge_verdicts": 0,
+    "total_verdicts": 4182
+  },
+  "model_id": "us.anthropic.claude-sonnet-4-6",
+  "source": "paper",
+  "run_dir_key": "claude_sonnet_46"
+}

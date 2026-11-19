@@ -1,0 +1,256 @@
+{
+  "model": "Claude Opus 4.6",
+  "judge_model": "us.anthropic.claude-opus-4-8",
+  "scored_at": "2026-11-13T20:15:33+00:00",
+  "avg_NDS": 0.5232407407407407,
+  "avg_NDS_ci": [
+    0.48869451459034796,
+    0.5570735830527498
+  ],
+  "avg_NER": 0.7062514029180695,
+  "avg_NER_ci": [
+    0.6836752244668912,
+    0.7295794051627384
+  ],
+  "avg_NLR": 0.18301066217732886,
+  "avg_NLR_ci": [
+    0.15854278900112231,
+    0.20787605218855218
+  ],
+  "profile": "calibration",
+  "per_domain": {
+    "criminal_justice": {
+      "n_normative": 100,
+      "n_descriptive": 100,
+      "n_normative_obs": 300,
+      "n_descriptive_obs": 300,
+      "e_normative": 100,
+      "e_descriptive": 5,
+      "NER": 1.0,
+      "NLR": 0.05,
+      "PLR": 0.0,
+      "DER": 0.95,
+      "NDS": 0.95,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.01,
+        0.1
+      ],
+      "NDS_ci": [
+        0.9,
+        0.99
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.5578947368421052,
+      "Dir_desc_ci": [
+        0.3711715381534937,
+        0.7012529410550945
+      ],
+      "ci_method": "bootstrap"
+    },
+    "housing": {
+      "n_normative": 99,
+      "n_descriptive": 99,
+      "n_normative_obs": 297,
+      "n_descriptive_obs": 297,
+      "e_normative": 34,
+      "e_descriptive": 12,
+      "NER": 0.3434343434343434,
+      "NLR": 0.12121212121212122,
+      "PLR": 0.6565656565656566,
+      "DER": 0.8787878787878788,
+      "NDS": 0.2222222222222222,
+      "NER_ci": [
+        0.25252525252525254,
+        0.43434343434343436
+      ],
+      "NLR_ci": [
+        0.06060606060606061,
+        0.1919191919191919
+      ],
+      "NDS_ci": [
+        0.1111111111111111,
+        0.33333333333333337
+      ],
+      "Dir_norm": -0.6,
+      "Dir_norm_ci": [
+        -0.7584408151758905,
+        -0.37459734723668126
+      ],
+      "Dir_desc": 0.9310344827586208,
+      "Dir_desc_ci": [
+        0.8069183522625121,
+        0.9764083589449881
+      ],
+      "ci_method": "bootstrap"
+    },
+    "hiring": {
+      "n_normative": 150,
+      "n_descriptive": 150,
+      "n_normative_obs": 450,
+      "n_descriptive_obs": 450,
+      "e_normative": 23,
+      "e_descriptive": 5,
+      "NER": 0.15333333333333332,
+      "NLR": 0.03333333333333333,
+      "PLR": 0.8466666666666667,
+      "DER": 0.9666666666666667,
+      "NDS": 0.12,
+      "NER_ci": [
+        0.1,
+        0.21333333333333335
+      ],
+      "NLR_ci": [
+        0.006666666666666667,
+        0.06666666666666667
+      ],
+      "NDS_ci": [
+        0.05999999999999999,
+        0.18666666666666668
+      ],
+      "Dir_norm": -0.07086614173228345,
+      "Dir_norm_ci": [
+        -0.2397139716110821,
+        0.10214289771571017
+      ],
+      "Dir_desc": 0.9172413793103449,
+      "Dir_desc_ci": [
+        0.8253370361557706,
+        0.9617994385037805
+      ],
+      "ci_method": "bootstrap"
+    },
+    "education": {
+      "n_normative": 108,
+      "n_descriptive": 108,
+      "n_normative_obs": 324,
+      "n_descriptive_obs": 324,
+      "e_normative": 80,
+      "e_descriptive": 65,
+      "NER": 0.7407407407407407,
+      "NLR": 0.6018518518518519,
+      "PLR": 0.2592592592592593,
+      "DER": 0.39814814814814814,
+      "NDS": 0.13888888888888884,
+      "NER_ci": [
+        0.6574074074074074,
+        0.8148148148148148
+      ],
+      "NLR_ci": [
+        0.5092592592592593,
+        0.6944444444444444
+      ],
+      "NDS_ci": [
+        0.0092592592592593,
+        0.2685185185185185
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        -0.7587133904683089
+      ],
+      "Dir_desc": -0.627906976744186,
+      "Dir_desc_ci": [
+        -0.8051649714200755,
+        -0.3476599268545125
+      ],
+      "ci_method": "bootstrap"
+    },
+    "customer_service": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 2,
+      "NER": 1.0,
+      "NLR": 0.016666666666666666,
+      "PLR": 0.0,
+      "DER": 0.9833333333333333,
+      "NDS": 0.9833333333333333,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.0,
+        0.041666666666666664
+      ],
+      "NDS_ci": [
+        0.9583333333333334,
+        1.0
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        0.9369433219550114,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "content_moderation": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 33,
+      "NER": 1.0,
+      "NLR": 0.275,
+      "PLR": 0.0,
+      "DER": 0.725,
+      "NDS": 0.725,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.2,
+        0.35833333333333334
+      ],
+      "NDS_ci": [
+        0.6416666666666666,
+        0.8
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.9310344827586208,
+      "Dir_desc_ci": [
+        0.8069183522625121,
+        0.9764083589449881
+      ],
+      "ci_method": "bootstrap"
+    }
+  },
+  "ci_method": "bootstrap",
+  "bootstrap_iters": 10000,
+  "bootstrap_seed": 42,
+  "completeness": {
+    "paper_comparable": true,
+    "domains_scored": 6,
+    "domains_expected": 6,
+    "scenarios_scored": 697,
+    "scenarios_expected": 697,
+    "runs_per_scenario_as_expected": true,
+    "missing_or_partial_domains": {},
+    "unparseable_judge_verdicts": 0,
+    "total_verdicts": 4182
+  },
+  "model_id": "us.anthropic.claude-opus-4-6-v1",
+  "source": "paper",
+  "run_dir_key": "claude_opus_46"
+}

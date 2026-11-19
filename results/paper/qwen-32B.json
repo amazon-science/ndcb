@@ -1,0 +1,256 @@
+{
+  "model": "Qwen3-32B",
+  "judge_model": "us.anthropic.claude-opus-4-8",
+  "scored_at": "2026-11-13T20:15:36+00:00",
+  "avg_NDS": 0.056470258136924745,
+  "avg_NDS_ci": [
+    0.017047558922559106,
+    0.09555899270482612
+  ],
+  "avg_NER": 0.7826515151515151,
+  "avg_NER_ci": [
+    0.7576121632996633,
+    0.8071271043771043
+  ],
+  "avg_NLR": 0.7261812570145904,
+  "avg_NLR_ci": [
+    0.6944244528619529,
+    0.7578597783389449
+  ],
+  "profile": "divergence",
+  "per_domain": {
+    "criminal_justice": {
+      "n_normative": 100,
+      "n_descriptive": 100,
+      "n_normative_obs": 300,
+      "n_descriptive_obs": 300,
+      "e_normative": 100,
+      "e_descriptive": 82,
+      "NER": 1.0,
+      "NLR": 0.82,
+      "PLR": 0.0,
+      "DER": 0.18000000000000005,
+      "NDS": 0.18000000000000005,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.74,
+        0.89
+      ],
+      "NDS_ci": [
+        0.10999999999999999,
+        0.26
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.7777777777777777,
+      "Dir_desc_ci": [
+        0.34400469739642414,
+        0.937960954708775
+      ],
+      "ci_method": "bootstrap"
+    },
+    "housing": {
+      "n_normative": 99,
+      "n_descriptive": 99,
+      "n_normative_obs": 297,
+      "n_descriptive_obs": 297,
+      "e_normative": 31,
+      "e_descriptive": 72,
+      "NER": 0.31313131313131315,
+      "NLR": 0.7272727272727273,
+      "PLR": 0.6868686868686869,
+      "DER": 0.2727272727272727,
+      "NDS": -0.41414141414141414,
+      "NER_ci": [
+        0.2222222222222222,
+        0.40404040404040403
+      ],
+      "NLR_ci": [
+        0.6363636363636364,
+        0.8080808080808081
+      ],
+      "NDS_ci": [
+        -0.5353535353535354,
+        -0.2828282828282829
+      ],
+      "Dir_norm": 0.9411764705882353,
+      "Dir_norm_ci": [
+        0.7979073726955388,
+        0.9837936409137402
+      ],
+      "Dir_desc": 0.8518518518518519,
+      "Dir_desc_ci": [
+        0.5326081463395371,
+        0.9588906918780227
+      ],
+      "ci_method": "bootstrap"
+    },
+    "hiring": {
+      "n_normative": 150,
+      "n_descriptive": 150,
+      "n_normative_obs": 450,
+      "n_descriptive_obs": 450,
+      "e_normative": 97,
+      "e_descriptive": 133,
+      "NER": 0.6466666666666666,
+      "NLR": 0.8866666666666667,
+      "PLR": 0.3533333333333334,
+      "DER": 0.11333333333333329,
+      "NDS": -0.2400000000000001,
+      "NER_ci": [
+        0.5733333333333334,
+        0.72
+      ],
+      "NLR_ci": [
+        0.8333333333333334,
+        0.9333333333333333
+      ],
+      "NDS_ci": [
+        -0.33333333333333326,
+        -0.14666666666666672
+      ],
+      "Dir_norm": 0.320754716981132,
+      "Dir_norm_ci": [
+        0.05189573275096593,
+        0.5462592179735164
+      ],
+      "Dir_desc": 0.5294117647058822,
+      "Dir_desc_ci": [
+        0.05476403760870063,
+        0.8088991135583976
+      ],
+      "ci_method": "bootstrap"
+    },
+    "education": {
+      "n_normative": 108,
+      "n_descriptive": 108,
+      "n_normative_obs": 324,
+      "n_descriptive_obs": 324,
+      "e_normative": 84,
+      "e_descriptive": 79,
+      "NER": 0.7777777777777778,
+      "NLR": 0.7314814814814815,
+      "PLR": 0.2222222222222222,
+      "DER": 0.2685185185185185,
+      "NDS": 0.04629629629629628,
+      "NER_ci": [
+        0.6944444444444444,
+        0.8518518518518519
+      ],
+      "NLR_ci": [
+        0.6481481481481481,
+        0.8148148148148148
+      ],
+      "NDS_ci": [
+        -0.06481481481481488,
+        0.16666666666666663
+      ],
+      "Dir_norm": -0.6666666666666667,
+      "Dir_norm_ci": [
+        -0.866426473427341,
+        -0.28293858700601904
+      ],
+      "Dir_desc": -0.3793103448275862,
+      "Dir_desc_ci": [
+        -0.6544876651103356,
+        -0.01539731533813693
+      ],
+      "ci_method": "bootstrap"
+    },
+    "customer_service": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 119,
+      "e_descriptive": 50,
+      "NER": 0.9916666666666667,
+      "NLR": 0.4166666666666667,
+      "PLR": 0.008333333333333304,
+      "DER": 0.5833333333333333,
+      "NDS": 0.575,
+      "NER_ci": [
+        0.975,
+        1.0
+      ],
+      "NLR_ci": [
+        0.325,
+        0.5083333333333333
+      ],
+      "NDS_ci": [
+        0.48333333333333334,
+        0.6666666666666667
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        0.5869013712455249
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        0.8959538751794662,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "content_moderation": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 116,
+      "e_descriptive": 93,
+      "NER": 0.9666666666666667,
+      "NLR": 0.775,
+      "PLR": 0.033333333333333326,
+      "DER": 0.22499999999999998,
+      "NDS": 0.19166666666666665,
+      "NER_ci": [
+        0.9333333333333333,
+        0.9916666666666667
+      ],
+      "NLR_ci": [
+        0.7,
+        0.85
+      ],
+      "NDS_ci": [
+        0.10833333333333339,
+        0.2749999999999999
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        -0.020218327090805732
+      ],
+      "Dir_desc": -0.18518518518518523,
+      "Dir_desc_ci": [
+        -0.5097048585120887,
+        0.18546598063870623
+      ],
+      "ci_method": "bootstrap"
+    }
+  },
+  "ci_method": "bootstrap",
+  "bootstrap_iters": 10000,
+  "bootstrap_seed": 42,
+  "completeness": {
+    "paper_comparable": true,
+    "domains_scored": 6,
+    "domains_expected": 6,
+    "scenarios_scored": 697,
+    "scenarios_expected": 697,
+    "runs_per_scenario_as_expected": true,
+    "missing_or_partial_domains": {},
+    "unparseable_judge_verdicts": 0,
+    "total_verdicts": 4182
+  },
+  "model_id": "qwen.qwen3-32b-v1:0",
+  "source": "paper",
+  "run_dir_key": "qwen-32B"
+}

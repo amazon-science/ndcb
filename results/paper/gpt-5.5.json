@@ -1,0 +1,256 @@
+{
+  "model": "GPT-5.5",
+  "judge_model": "us.anthropic.claude-opus-4-8",
+  "scored_at": "2026-11-13T20:15:37+00:00",
+  "avg_NDS": -0.14349326599326606,
+  "avg_NDS_ci": [
+    -0.16850750561167221,
+    -0.11874017957351313
+  ],
+  "avg_NER": 0.8365993265993267,
+  "avg_NER_ci": [
+    0.8140681818181819,
+    0.8585361952861953
+  ],
+  "avg_NLR": 0.9800925925925927,
+  "avg_NLR_ci": [
+    0.9686026936026937,
+    0.9901936026936028
+  ],
+  "profile": "convergence",
+  "per_domain": {
+    "criminal_justice": {
+      "n_normative": 100,
+      "n_descriptive": 100,
+      "n_normative_obs": 300,
+      "n_descriptive_obs": 300,
+      "e_normative": 100,
+      "e_descriptive": 100,
+      "NER": 1.0,
+      "NLR": 1.0,
+      "PLR": 0.0,
+      "DER": 0.0,
+      "NDS": 0.0,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "housing": {
+      "n_normative": 99,
+      "n_descriptive": 99,
+      "n_normative_obs": 297,
+      "n_descriptive_obs": 297,
+      "e_normative": 51,
+      "e_descriptive": 88,
+      "NER": 0.5151515151515151,
+      "NLR": 0.8888888888888888,
+      "PLR": 0.48484848484848486,
+      "DER": 0.11111111111111116,
+      "NDS": -0.3737373737373737,
+      "NER_ci": [
+        0.41414141414141414,
+        0.6161616161616161
+      ],
+      "NLR_ci": [
+        0.8282828282828283,
+        0.9494949494949495
+      ],
+      "NDS_ci": [
+        -0.4949494949494949,
+        -0.2525252525252526
+      ],
+      "Dir_norm": -0.6666666666666667,
+      "Dir_norm_ci": [
+        -0.8260897284702886,
+        -0.4084434319748882
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        0.4823340660639368,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "hiring": {
+      "n_normative": 150,
+      "n_descriptive": 150,
+      "n_normative_obs": 450,
+      "n_descriptive_obs": 450,
+      "e_normative": 84,
+      "e_descriptive": 150,
+      "NER": 0.56,
+      "NLR": 1.0,
+      "PLR": 0.43999999999999995,
+      "DER": 0.0,
+      "NDS": -0.43999999999999995,
+      "NER_ci": [
+        0.48,
+        0.64
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        -0.52,
+        -0.36
+      ],
+      "Dir_norm": -0.1515151515151515,
+      "Dir_norm_ci": [
+        -0.3751497970291622,
+        0.08878693551811434
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "education": {
+      "n_normative": 108,
+      "n_descriptive": 108,
+      "n_normative_obs": 324,
+      "n_descriptive_obs": 324,
+      "e_normative": 102,
+      "e_descriptive": 108,
+      "NER": 0.9444444444444444,
+      "NLR": 1.0,
+      "PLR": 0.05555555555555558,
+      "DER": 0.0,
+      "NDS": -0.05555555555555558,
+      "NER_ci": [
+        0.8981481481481481,
+        0.9814814814814815
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        -0.10185185185185186,
+        -0.01851851851851849
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        -0.21933142419566964
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "customer_service": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 120,
+      "NER": 1.0,
+      "NLR": 1.0,
+      "PLR": 0.0,
+      "DER": 0.0,
+      "NDS": 0.0,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "content_moderation": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 119,
+      "NER": 1.0,
+      "NLR": 0.9916666666666667,
+      "PLR": 0.0,
+      "DER": 0.008333333333333304,
+      "NDS": 0.008333333333333304,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.975,
+        1.0
+      ],
+      "NDS_ci": [
+        0.0,
+        0.025000000000000022
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        -0.586901371245525,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    }
+  },
+  "ci_method": "bootstrap",
+  "bootstrap_iters": 10000,
+  "bootstrap_seed": 42,
+  "completeness": {
+    "paper_comparable": true,
+    "domains_scored": 6,
+    "domains_expected": 6,
+    "scenarios_scored": 697,
+    "scenarios_expected": 697,
+    "runs_per_scenario_as_expected": true,
+    "missing_or_partial_domains": {},
+    "unparseable_judge_verdicts": 0,
+    "total_verdicts": 4182
+  },
+  "model_id": "openai.gpt-5.5",
+  "source": "paper",
+  "run_dir_key": "gpt-5.5"
+}

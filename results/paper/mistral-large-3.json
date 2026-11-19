@@ -1,0 +1,256 @@
+{
+  "model": "Mistral Large 3",
+  "judge_model": "us.anthropic.claude-opus-4-8",
+  "scored_at": "2026-11-13T20:15:35+00:00",
+  "avg_NDS": 0.4197418630751965,
+  "avg_NDS_ci": [
+    0.38300161335578004,
+    0.4570765291806959
+  ],
+  "avg_NER": 0.6827160493827161,
+  "avg_NER_ci": [
+    0.660400462962963,
+    0.7045069444444445
+  ],
+  "avg_NLR": 0.2629741863075196,
+  "avg_NLR_ci": [
+    0.23350701459034792,
+    0.29294374298540965
+  ],
+  "profile": "divergence",
+  "per_domain": {
+    "criminal_justice": {
+      "n_normative": 100,
+      "n_descriptive": 100,
+      "n_normative_obs": 300,
+      "n_descriptive_obs": 300,
+      "e_normative": 98,
+      "e_descriptive": 38,
+      "NER": 0.98,
+      "NLR": 0.38,
+      "PLR": 0.020000000000000018,
+      "DER": 0.62,
+      "NDS": 0.6,
+      "NER_ci": [
+        0.95,
+        1.0
+      ],
+      "NLR_ci": [
+        0.28,
+        0.48
+      ],
+      "NDS_ci": [
+        0.5,
+        0.7
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        0.3152395449866936
+      ],
+      "Dir_desc": 0.5161290322580645,
+      "Dir_desc_ci": [
+        0.276949849679452,
+        0.6950820758933249
+      ],
+      "ci_method": "bootstrap"
+    },
+    "housing": {
+      "n_normative": 99,
+      "n_descriptive": 99,
+      "n_normative_obs": 297,
+      "n_descriptive_obs": 297,
+      "e_normative": 0,
+      "e_descriptive": 8,
+      "NER": 0.0,
+      "NLR": 0.08080808080808081,
+      "PLR": 1.0,
+      "DER": 0.9191919191919192,
+      "NDS": -0.08080808080808081,
+      "NER_ci": [
+        0.0,
+        0.0
+      ],
+      "NLR_ci": [
+        0.030303030303030304,
+        0.1414141414141414
+      ],
+      "NDS_ci": [
+        -0.1414141414141414,
+        -0.030303030303030304
+      ],
+      "Dir_norm": 0.13131313131313127,
+      "Dir_norm_ci": [
+        -0.06525086692854654,
+        0.3180671950723495
+      ],
+      "Dir_desc": 0.9120879120879122,
+      "Dir_desc_ci": [
+        0.7847381323146732,
+        0.9655512671117654
+      ],
+      "ci_method": "bootstrap"
+    },
+    "hiring": {
+      "n_normative": 150,
+      "n_descriptive": 150,
+      "n_normative_obs": 450,
+      "n_descriptive_obs": 450,
+      "e_normative": 83,
+      "e_descriptive": 12,
+      "NER": 0.5533333333333333,
+      "NLR": 0.08,
+      "PLR": 0.44666666666666666,
+      "DER": 0.92,
+      "NDS": 0.47333333333333333,
+      "NER_ci": [
+        0.47333333333333333,
+        0.6333333333333333
+      ],
+      "NLR_ci": [
+        0.04,
+        0.12666666666666668
+      ],
+      "NDS_ci": [
+        0.38,
+        0.5666666666666667
+      ],
+      "Dir_norm": 0.28358208955223874,
+      "Dir_norm_ci": [
+        0.044370196798437345,
+        0.49203885847216755
+      ],
+      "Dir_desc": 0.8985507246376812,
+      "Dir_desc_ci": [
+        0.798001821268413,
+        0.9504291527354849
+      ],
+      "ci_method": "bootstrap"
+    },
+    "education": {
+      "n_normative": 108,
+      "n_descriptive": 108,
+      "n_normative_obs": 324,
+      "n_descriptive_obs": 324,
+      "e_normative": 68,
+      "e_descriptive": 40,
+      "NER": 0.6296296296296297,
+      "NLR": 0.37037037037037035,
+      "PLR": 0.37037037037037035,
+      "DER": 0.6296296296296297,
+      "NDS": 0.2592592592592593,
+      "NER_ci": [
+        0.5370370370370371,
+        0.7222222222222222
+      ],
+      "NLR_ci": [
+        0.2777777777777778,
+        0.46296296296296297
+      ],
+      "NDS_ci": [
+        0.12962962962962965,
+        0.3888888888888889
+      ],
+      "Dir_norm": -0.95,
+      "Dir_norm_ci": [
+        -0.9911463369946372,
+        -0.7423726207305184
+      ],
+      "Dir_desc": 0.7352941176470589,
+      "Dir_desc_ci": [
+        0.5343988050868453,
+        0.8575551117954039
+      ],
+      "ci_method": "bootstrap"
+    },
+    "customer_service": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 119,
+      "e_descriptive": 8,
+      "NER": 0.9916666666666667,
+      "NLR": 0.06666666666666667,
+      "PLR": 0.008333333333333304,
+      "DER": 0.9333333333333333,
+      "NDS": 0.925,
+      "NER_ci": [
+        0.975,
+        1.0
+      ],
+      "NLR_ci": [
+        0.025,
+        0.11666666666666667
+      ],
+      "NDS_ci": [
+        0.875,
+        0.9666666666666667
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        0.5869013712455249
+      ],
+      "Dir_desc": 0.9464285714285714,
+      "Dir_desc_ci": [
+        0.8483890900865712,
+        0.9816983601081422
+      ],
+      "ci_method": "bootstrap"
+    },
+    "content_moderation": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 113,
+      "e_descriptive": 72,
+      "NER": 0.9416666666666667,
+      "NLR": 0.6,
+      "PLR": 0.05833333333333335,
+      "DER": 0.4,
+      "NDS": 0.3416666666666667,
+      "NER_ci": [
+        0.9,
+        0.9833333333333333
+      ],
+      "NLR_ci": [
+        0.5083333333333333,
+        0.6833333333333333
+      ],
+      "NDS_ci": [
+        0.2416666666666667,
+        0.44166666666666665
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        -0.29133912986662536
+      ],
+      "Dir_desc": 0.20833333333333326,
+      "Dir_desc_ci": [
+        -0.073791830149055,
+        0.4595834427881724
+      ],
+      "ci_method": "bootstrap"
+    }
+  },
+  "ci_method": "bootstrap",
+  "bootstrap_iters": 10000,
+  "bootstrap_seed": 42,
+  "completeness": {
+    "paper_comparable": true,
+    "domains_scored": 6,
+    "domains_expected": 6,
+    "scenarios_scored": 697,
+    "scenarios_expected": 697,
+    "runs_per_scenario_as_expected": true,
+    "missing_or_partial_domains": {},
+    "unparseable_judge_verdicts": 0,
+    "total_verdicts": 4182
+  },
+  "model_id": "mistral.mistral-large-3-675b-instruct",
+  "source": "paper",
+  "run_dir_key": "mistral-large-3"
+}

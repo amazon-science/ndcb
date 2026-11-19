@@ -1,0 +1,256 @@
+{
+  "model": "GPT-6 Astra (Bedrock, max_tokens=2000)",
+  "judge_model": "us.anthropic.claude-fable-5-2",
+  "scored_at": "2026-11-19T06:17:47+00:00",
+  "avg_NDS": -0.34259259259259256,
+  "avg_NDS_ci": [
+    -0.35030864197530864,
+    -0.3364197530864198
+  ],
+  "avg_NER": 0.6574074074074074,
+  "avg_NER_ci": [
+    0.6496913580246914,
+    0.6635802469135802
+  ],
+  "avg_NLR": 1.0,
+  "avg_NLR_ci": [
+    1.0,
+    1.0
+  ],
+  "profile": "convergence",
+  "per_domain": {
+    "criminal_justice": {
+      "n_normative": 100,
+      "n_descriptive": 100,
+      "n_normative_obs": 300,
+      "n_descriptive_obs": 299,
+      "e_normative": 100,
+      "e_descriptive": 100,
+      "NER": 1.0,
+      "NLR": 1.0,
+      "PLR": 0.0,
+      "DER": 0.0,
+      "NDS": 0.0,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "housing": {
+      "n_normative": 99,
+      "n_descriptive": 99,
+      "n_normative_obs": 297,
+      "n_descriptive_obs": 297,
+      "e_normative": 0,
+      "e_descriptive": 99,
+      "NER": 0.0,
+      "NLR": 1.0,
+      "PLR": 1.0,
+      "DER": 0.0,
+      "NDS": -1.0,
+      "NER_ci": [
+        0.0,
+        0.0
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        -1.0,
+        -1.0
+      ],
+      "Dir_norm": 0.9191919191919191,
+      "Dir_norm_ci": [
+        0.8013595749949154,
+        0.9683547220117048
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "hiring": {
+      "n_normative": 150,
+      "n_descriptive": 150,
+      "n_normative_obs": 450,
+      "n_descriptive_obs": 450,
+      "e_normative": 0,
+      "e_descriptive": 150,
+      "NER": 0.0,
+      "NLR": 1.0,
+      "PLR": 1.0,
+      "DER": 0.0,
+      "NDS": -1.0,
+      "NER_ci": [
+        0.0,
+        0.0
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        -1.0,
+        -1.0
+      ],
+      "Dir_norm": 0.8933333333333333,
+      "Dir_norm_ci": [
+        0.7965922432360908,
+        0.9454609201596123
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "education": {
+      "n_normative": 108,
+      "n_descriptive": 108,
+      "n_normative_obs": 324,
+      "n_descriptive_obs": 324,
+      "e_normative": 102,
+      "e_descriptive": 108,
+      "NER": 0.9444444444444444,
+      "NLR": 1.0,
+      "PLR": 0.05555555555555558,
+      "DER": 0.0,
+      "NDS": -0.05555555555555558,
+      "NER_ci": [
+        0.8981481481481481,
+        0.9814814814814815
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        -0.10185185185185186,
+        -0.01851851851851849
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        -0.6247673870346989,
+        0.6247673870346988
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "customer_service": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 120,
+      "NER": 1.0,
+      "NLR": 1.0,
+      "PLR": 0.0,
+      "DER": 0.0,
+      "NDS": 0.0,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "content_moderation": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 120,
+      "NER": 1.0,
+      "NLR": 1.0,
+      "PLR": 0.0,
+      "DER": 0.0,
+      "NDS": 0.0,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        1.0,
+        1.0
+      ],
+      "NDS_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.0,
+      "Dir_desc_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_method": "bootstrap"
+    }
+  },
+  "ci_method": "bootstrap",
+  "bootstrap_iters": 10000,
+  "bootstrap_seed": 42,
+  "completeness": {
+    "paper_comparable": false,
+    "domains_scored": 6,
+    "domains_expected": 6,
+    "scenarios_scored": 697,
+    "scenarios_expected": 697,
+    "runs_per_scenario_as_expected": false,
+    "missing_or_partial_domains": {},
+    "unparseable_judge_verdicts": 0,
+    "total_verdicts": 4181,
+    "failed_judge_calls": 1
+  },
+  "model_id": "us.openai.gpt-6-astra",
+  "source": "submission"
+}
