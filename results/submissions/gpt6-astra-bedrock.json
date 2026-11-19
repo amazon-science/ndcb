@@ -252,5 +252,9 @@
     "failed_judge_calls": 1
   },
   "model_id": "us.openai.gpt-6-astra",
-  "source": "submission"
+  "source": "submission",
+  "generation_max_tokens": [
+    2000
+  ],
+  "protocol": "latest"
 }

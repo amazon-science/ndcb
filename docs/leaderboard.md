@@ -40,11 +40,14 @@ The six models from the publication, frozen as published. Regenerated from the p
 
 ## Post-paper submissions
 
-Evaluated after publication with the same prompts, judge and scorer. Any departure from the paper protocol is listed under the table. These are new measurements, not revisions to the paper.
+Evaluated after publication with the same prompts, rubric and scorer. These are new measurements, not revisions to the paper.
 
-| Model | Avg. NDS | 95% CI | Avg. NER | Avg. NLR | Profile | n |
-|---|---:|---|---:|---:|---|---:|
-| Claude Opus 5.5 | **+0.05** | [+0.03, +0.06] | 1.00 | 0.95 | divergence | 697 |
+The **Protocol** column says how each row was produced. `paper` is the published setup (500-token generations, Claude Opus 4.8 judge). `latest` is the default for new evaluations (2,000 tokens, Claude Fable 5.2 judge). `custom` is any other combination. Compare scores only within the same protocol: the token limit and the judge can both change NDS.
+
+| Model | Protocol | Avg. NDS | 95% CI | Avg. NER | Avg. NLR | Profile | n |
+|---|---|---:|---|---:|---:|---|---:|
+| Claude Opus 5.5 | custom | **+0.05** | [+0.03, +0.06] | 1.00 | 0.95 | divergence | 697 |
+| GPT-6 Astra (Bedrock, max_tokens=2000) ⚠️ | latest | **-0.34** | [-0.35, -0.34] | 0.66 | 1.00 | convergence | 697 |
 
 
 **Claude Opus 5.5** deviates from the paper protocol:
@@ -56,6 +59,7 @@ Evaluated after publication with the same prompts, judge and scorer. Any departu
 | Model | Crim. Just. | Housing | Hiring | Education | Cust. Svc. | Cont. Mod. | Avg. |
 |---|---|---|---|---|---|---|---|
 | Claude Opus 5.5 | +0.00 | +0.20 | +0.01 | +0.03 | +0.00 | +0.03 | **+0.05** |
+| GPT-6 Astra (Bedrock, max_tokens=2000) | +0.00 | -1.00 | -1.00 | -0.06 | +0.00 | +0.00 | **-0.34** |
 
 
 ## Reading these numbers

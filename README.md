@@ -91,35 +91,49 @@ loudly rather than silently changing your score.
 
 ## Evaluate a model
 
-Use the same settings for new evaluations on every backend:
+### Two protocols: `paper` and `latest`
 
-- **Generations:** 2,000-token limit (the paper used 500; pass
-  `--max-tokens 500` to reproduce it), temperature 0, three runs per scenario
-  per framing, all six domains, and the released prompts unchanged.
+Every command that calls a model takes `--protocol`. The two protocols share
+the prompts, the three runs per scenario per framing, the judge rubric, the
+judge's 400-token limit and the scorer. They differ only in two settings:
+
+| `--protocol` | Generation limit | Judge | Use it to |
+|---|---|---|---|
+| `paper` | 500 tokens | Claude Opus 4.8 | reproduce the published numbers |
+| `latest` (default) | 2,000 tokens | Claude Fable 5.2 | evaluate new models |
+
+`latest` raises the limit because 500 tokens truncates recent reasoning
+models: Claude Opus 5.5 hit the limit on 68% of pilot calls at 500, and on
+none of 4,182 calls at 2,000.
+
+Pass the same `--protocol` to `ndcb run` and `ndcb judge`. `--max-tokens` and
+`--judge-model` still override a protocol's settings, but the score is then
+labelled `custom`. Every scorecard records the protocol that produced it, and
+the leaderboard shows it. **Compare scores only within one protocol.**
+
+To reproduce the paper:
+
+```bash
+ndcb run   --protocol paper --model us.anthropic.claude-opus-4-6-v1 --out runs/opus46-paper
+ndcb judge --protocol paper --out runs/opus46-paper
+ndcb score --out runs/opus46-paper --model "Claude Opus 4.6"
+```
+
+Settings common to both protocols:
+
+- **Generations:** temperature 0, three runs per scenario per framing, all
+  six domains, and the released prompts unchanged.
 - **Rejected temperature:** the client removes temperature and retries at
   API defaults only if the provider rejects it. This is the paper's
   documented exception. `--no-temperature` can skip that rejection for a
   model already known to require it.
 - **Other generation parameters:** leave reasoning effort and thinking at
   each model's API defaults; do not add `--extra-body` overrides.
-- **Judge:** Claude Fable 5.2 on Bedrock
-  (`us.anthropic.claude-fable-5-2`), API-default sampling and 400 tokens.
-  `ndcb judge` applies these judge settings automatically.
+- **Judge:** API-default sampling and 400 tokens, applied by `ndcb judge`.
 - **Scoring:** the default scenario-level majority vote and bootstrap
   (10,000 iterations, seed 42), averaged equally over the six domains.
 
-All full-run examples below explicitly request `--runs 3`, `--temperature 0`,
-and `--max-tokens 2000`. Smoke tests use one repetition only. Model-specific
-defaults and tokenizers can differ, so this holds the requested protocol
-constant without asserting identical internal reasoning behavior.
-
-**Differences from the paper:** the paper used 500 generation tokens and
-Claude Opus 4.8 as judge. New evaluations default to 2,000 generation tokens
-to reduce truncation, including for Opus 5.5, and use Claude Fable 5.2 as judge.
-Report both changes as protocol deviations. To use the paper's settings,
-pass `--max-tokens 500` to `ndcb run` and
-`--judge-model us.anthropic.claude-opus-4-8` to `ndcb judge`.
-The judge's token limit remains 400.
+A new evaluation with the `latest` protocol:
 
 ```bash
 export AWS_PROFILE=your-profile   # or any standard AWS credential source

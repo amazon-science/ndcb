@@ -258,5 +258,9 @@
   "protocol_deviations": [
     "max_tokens 2000 instead of the paper's 500: at 500, 68% of pilot calls were truncated (paper models: 0-3%); at 2000, 0 of 4,182 were.",
     "No temperature: the model rejects the parameter, so it ran at API defaults (as the paper did for GPT-5.5 and the judge)."
-  ]
+  ],
+  "generation_max_tokens": [
+    2000
+  ],
+  "protocol": "custom"
 }

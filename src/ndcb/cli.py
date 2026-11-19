@@ -19,7 +19,8 @@ from .dataset import (CHECKSUMS, DATA_FILES, cache_dir, candidate_dirs,
 from .metrics import (DEFAULT_ALPHA, DEFAULT_BOOTSTRAP_ITERS,
                       DEFAULT_BOOTSTRAP_SEED, DOMAINS)
 from .prompts import JUDGE_MAX_TOKENS, MODEL_MAX_TOKENS
-from .run import DEFAULT_JUDGE_MODEL, DEFAULT_N_RUNS
+from .protocols import DEFAULT_PROTOCOL, PROTOCOLS, judge_model_id
+from .run import DEFAULT_N_RUNS
 
 
 def _cmd_download(args) -> int:
@@ -68,13 +69,16 @@ def _cmd_info(args) -> int:
 def _cmd_run(args) -> int:
     from .run import generate
     extra = json.loads(args.extra_body) if args.extra_body else None
+    max_tokens = args.max_tokens or PROTOCOLS[args.protocol].max_tokens
+    print(f"protocol {args.protocol}: max_tokens={max_tokens}")
     counts = generate(
         model=args.model, out_dir=args.out, api=args.api,
         domains=args.domains or DOMAINS, n_runs=args.runs,
         temperature=None if args.no_temperature else args.temperature,
-        max_tokens=args.max_tokens, workers=args.workers,
+        max_tokens=max_tokens, workers=args.workers,
         region=args.region, profile=args.profile, base_url=args.base_url,
-        api_key=args.api_key, extra_body=extra, limit=args.limit)
+        api_key=args.api_key, extra_body=extra, limit=args.limit,
+        protocol=args.protocol)
     total = sum(counts.values())
     print(f"generation pass complete; {total} new calls made into {args.out}")
     return 0
@@ -82,11 +86,14 @@ def _cmd_run(args) -> int:
 
 def _cmd_judge(args) -> int:
     from .run import judge
+    judge_model = args.judge_model or judge_model_id(args.protocol, args.api)
+    print(f"protocol {args.protocol}: judge={judge_model}")
     counts = judge(
-        model=args.model or "", out_dir=args.out, judge_model=args.judge_model,
+        model=args.model or "", out_dir=args.out, judge_model=judge_model,
         judge_api=args.api, domains=args.domains or DOMAINS,
         workers=args.workers, region=args.region, profile=args.profile,
-        base_url=args.base_url, api_key=args.api_key, swapped=args.swapped)
+        base_url=args.base_url, api_key=args.api_key, swapped=args.swapped,
+        protocol=args.protocol)
     total = sum(counts.values())
     print(f"judging pass complete; {total} new judge calls made into {args.out}")
     return 0
@@ -119,6 +126,14 @@ def _cmd_leaderboard(args) -> int:
     out.write_text(page, encoding="utf-8")
     print(f"wrote {out}")
     return 0
+
+
+def _add_protocol_arg(p: argparse.ArgumentParser):
+    p.add_argument("--protocol", default=DEFAULT_PROTOCOL, choices=list(PROTOCOLS),
+                   help="paper = as published (500 tokens, Claude Opus 4.8 "
+                        "judge); latest = default for new evaluations (2000 "
+                        "tokens, Claude Fable 5.2 judge). Use the same value "
+                        "for `run` and `judge`.")
 
 
 def _add_provider_args(p: argparse.ArgumentParser, judge: bool = False):
@@ -168,9 +183,11 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--temperature", type=float, default=0.0)
     p.add_argument("--no-temperature", action="store_true",
                    help="omit temperature entirely (reasoning models)")
-    p.add_argument("--max-tokens", type=int, default=MODEL_MAX_TOKENS,
-                   help=f"generation token limit (default: {MODEL_MAX_TOKENS}; "
-                        "paper: 500)")
+    _add_protocol_arg(p)
+    p.add_argument("--max-tokens", type=int, default=None,
+                   help="generation token limit (default: the protocol's -- "
+                        "paper 500, latest 2000). Overriding it makes the "
+                        "score 'custom'.")
     p.add_argument("--extra-body", default=None,
                    help='provider passthrough as JSON, e.g. \'{"reasoning_effort":"medium"}\'')
     p.add_argument("--limit", type=int, default=None,
@@ -181,8 +198,11 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("judge", help="label responses with the judge rubric")
     p.add_argument("--out", required=True, help="run directory from `ndcb run`")
     p.add_argument("--model", default=None, help="model under test (for records)")
-    p.add_argument("--judge-model", default=DEFAULT_JUDGE_MODEL,
-                   help=f"judge model id (default: {DEFAULT_JUDGE_MODEL})")
+    _add_protocol_arg(p)
+    p.add_argument("--judge-model", default=None,
+                   help="judge model id (default: the protocol's -- paper "
+                        "Claude Opus 4.8, latest Claude Fable 5.2). Another "
+                        "judge makes the score 'custom'.")
     p.add_argument("--swapped", action="store_true",
                    help="responses come from the order-reversed control")
     _add_provider_args(p, judge=True)

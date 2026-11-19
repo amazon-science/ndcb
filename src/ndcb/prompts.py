@@ -20,10 +20,13 @@ from __future__ import annotations
 
 from typing import List, Sequence
 
+from .protocols import DEFAULT_PROTOCOL, PROTOCOLS
+
 #: Max tokens used for the judge call in the paper's runs.
 JUDGE_MAX_TOKENS = 400
-#: Default generation limit for new evaluations; the paper used 500.
-MODEL_MAX_TOKENS = 2000
+#: Generation limit of the default protocol (see `ndcb.protocols`).
+#: The paper protocol used 500.
+MODEL_MAX_TOKENS = PROTOCOLS[DEFAULT_PROTOCOL].max_tokens
 
 
 def is_joint_option_set(options: Sequence[str]) -> bool:

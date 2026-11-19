@@ -252,5 +252,6 @@
   },
   "model_id": "openai.gpt-oss-120b-1:0",
   "source": "paper",
-  "run_dir_key": "gpt-oss-120b"
+  "run_dir_key": "gpt-oss-120b",
+  "protocol": "paper"
 }

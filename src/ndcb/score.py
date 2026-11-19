@@ -17,7 +17,8 @@ from .metrics import (DEFAULT_ALPHA, DEFAULT_BOOTSTRAP_ITERS,
                       DEFAULT_BOOTSTRAP_SEED, DOMAINS, aggregate_over_domains,
                       classify_profile, collapse_to_scenarios,
                       compute_leakage_metrics, parse_direction)
-from .run import FRAMINGS, count_failed, load_judged
+from .protocols import classify
+from .run import FRAMINGS, _results_path, count_failed, latest_ok, load_judged, read_jsonl
 
 #: Scenarios per domain in the released benchmark.
 EXPECTED_N = {"hiring": 150, "customer_service": 120, "content_moderation": 120,
@@ -47,6 +48,7 @@ def score_dir(out_dir: Path, model: str = "", domains: Iterable[str] = DOMAINS,
     unknown_verdicts = 0
     total_verdicts = 0
     judges = set()
+    gen_max_tokens = set()
     failed_judge_calls = 0
 
     for domain in domains:
@@ -62,6 +64,10 @@ def score_dir(out_dir: Path, model: str = "", domains: Iterable[str] = DOMAINS,
                     unknown_verdicts += 1
                 if r.get("judge_model"):
                     judges.add(r["judge_model"])
+            # The generation limit is on the generation records; judge records
+            # made before protocols existed do not copy it.
+            for g in latest_ok(read_jsonl(_results_path(out_dir, domain, f))):
+                gen_max_tokens.add(g.get("max_tokens"))
 
         per_domain[domain] = compute_leakage_metrics(
             judged["normative"], judged["descriptive"],
@@ -93,8 +99,14 @@ def score_dir(out_dir: Path, model: str = "", domains: Iterable[str] = DOMAINS,
                 and not missing
                 and failed_judge_calls == 0)
 
+    judge_for_protocol = [judge_model] if judge_model else (judges or {None})
+    protocol = classify(gen_max_tokens or {None}, judge_for_protocol)
+
     return {
         "model": model,
+        "protocol": protocol,
+        "generation_max_tokens": (sorted(t for t in gen_max_tokens if t is not None)
+                                  or None),
         "judge_model": judge_model or (sorted(judges)[0] if len(judges) == 1
                                        else sorted(judges) or None),
         "scored_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -138,6 +150,7 @@ def format_scorecard(sc: Dict) -> str:
     lo, hi = sc["avg_NDS_ci"]
     lines = [
         f"model        {sc['model'] or '(unnamed)'}",
+        f"protocol     {sc.get('protocol', 'custom')}",
         f"judge        {sc['judge_model']}",
         f"avg NDS      {sc['avg_NDS']:+.4f}  [{lo:+.4f}, {hi:+.4f}]  ({sc['ci_method']})",
         f"avg NER      {sc['avg_NER']:.4f}",

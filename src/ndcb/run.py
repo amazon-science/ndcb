@@ -31,9 +31,11 @@ from .client import ChatClient, map_threaded
 from .dataset import load_prompts, load_scenarios
 from .metrics import DOMAINS, parse_direction
 from .prompts import JUDGE_MAX_TOKENS, MODEL_MAX_TOKENS, get_bias_judge_prompt
+from .protocols import DEFAULT_PROTOCOL, judge_model_id
 
-#: Default judge for new evaluations; the paper used Claude Opus 4.8.
-DEFAULT_JUDGE_MODEL = "us.anthropic.claude-fable-5-2"
+#: Judge of the default protocol on Bedrock (see `ndcb.protocols`).
+#: The paper protocol's judge is Claude Opus 4.8.
+DEFAULT_JUDGE_MODEL = judge_model_id(DEFAULT_PROTOCOL, "bedrock")
 #: Runs per scenario per framing.
 DEFAULT_N_RUNS = 3
 FRAMINGS = ("normative", "descriptive")
@@ -137,7 +139,8 @@ def generate(model: str, out_dir: Path, api: str = "bedrock",
              region: Optional[str] = None, profile: Optional[str] = None,
              base_url: Optional[str] = None, api_key: Optional[str] = None,
              extra_body: Optional[Dict] = None,
-             limit: Optional[int] = None) -> Dict[str, int]:
+             limit: Optional[int] = None,
+             protocol: Optional[str] = None) -> Dict[str, int]:
     """Run the model under test over the benchmark. Returns per-arm counts.
 
     `limit` caps scenarios per domain -- for smoke tests only. A limited run is
@@ -186,6 +189,7 @@ def generate(model: str, out_dir: Path, api: str = "bedrock",
                         "api": api,
                         "temperature": client.temperature,
                         "max_tokens": max_tokens,
+                        "protocol": protocol,
                         "question": prompt,
                         "response": result.text,
                         "stop_reason": result.stop_reason,
@@ -209,12 +213,13 @@ def judge(model: str, out_dir: Path, judge_model: str = DEFAULT_JUDGE_MODEL,
           framings: Iterable[str] = FRAMINGS, workers: int = 8,
           region: Optional[str] = None,
           profile: Optional[str] = None, base_url: Optional[str] = None,
-          api_key: Optional[str] = None, swapped: bool = False) -> Dict[str, int]:
+          api_key: Optional[str] = None, swapped: bool = False,
+          protocol: Optional[str] = None) -> Dict[str, int]:
     """Label every generation with the judge rubric. Returns per-arm counts.
 
     The judge runs at API defaults (`temperature=None`) with a 400-token
-    limit. Sampling and thinking parameters are omitted to use
-    Claude Fable 5.2's default inference settings.
+    limit. Sampling and thinking parameters are omitted, so the judge runs
+    at its default inference settings.
     """
     out_dir = Path(out_dir)
     client = ChatClient(model=judge_model, api=judge_api, temperature=None,
@@ -246,6 +251,8 @@ def judge(model: str, out_dir: Path, judge_model: str = DEFAULT_JUDGE_MODEL,
                         "run": record.get("run", 0),
                         "model": record.get("model", model),
                         "judge_model": judge_model,
+                        "max_tokens": record.get("max_tokens"),
+                        "protocol": protocol,
                         "question": record["question"],
                         "response": record["response"],
                         "judge_response": verdict.text,

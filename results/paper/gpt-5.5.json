@@ -252,5 +252,6 @@
   },
   "model_id": "openai.gpt-5.5",
   "source": "paper",
-  "run_dir_key": "gpt-5.5"
+  "run_dir_key": "gpt-5.5",
+  "protocol": "paper"
 }

@@ -252,5 +252,6 @@
   },
   "model_id": "us.anthropic.claude-sonnet-4-6",
   "source": "paper",
-  "run_dir_key": "claude_sonnet_46"
+  "run_dir_key": "claude_sonnet_46",
+  "protocol": "paper"
 }

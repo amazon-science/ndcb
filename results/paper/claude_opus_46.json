@@ -252,5 +252,6 @@
   },
   "model_id": "us.anthropic.claude-opus-4-6-v1",
   "source": "paper",
-  "run_dir_key": "claude_opus_46"
+  "run_dir_key": "claude_opus_46",
+  "protocol": "paper"
 }

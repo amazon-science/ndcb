@@ -68,15 +68,18 @@ def _ci(pair) -> str:
     return f"[{fmt(lo)}, {fmt(hi)}]"
 
 
-def _headline_table(cards: List[Dict]) -> str:
-    head = ("| Model | Avg. NDS | 95% CI | Avg. NER | Avg. NLR | Profile | n |\n"
-            "|---|---:|---|---:|---:|---|---:|\n")
+def _headline_table(cards: List[Dict], show_protocol: bool = False) -> str:
+    pcol, psep = (" Protocol |", "---|") if show_protocol else ("", "")
+    head = (f"| Model |{pcol} Avg. NDS | 95% CI | Avg. NER | Avg. NLR | Profile | n |\n"
+            f"|---|{psep}---:|---|---:|---:|---|---:|\n")
     rows = []
     for c in cards:
         partial = "" if c.get("completeness", {}).get("paper_comparable") else " ⚠️"
         n = c.get("completeness", {}).get("scenarios_scored", "?")
         rows.append(
-            f"| {c.get('model','?')}{partial} | **{fmt(c['avg_NDS'])}** | "
+            f"| {c.get('model','?')}{partial} |"
+            + (f" {c.get('protocol', 'custom')} |" if show_protocol else "")
+            + f" **{fmt(c['avg_NDS'])}** | "
             f"{_ci(c['avg_NDS_ci'])} | {fmt(c['avg_NER'], signed=False)} | "
             f"{fmt(c['avg_NLR'], signed=False)} | {c.get('profile','?')} | {n} |"
         )
@@ -141,10 +144,16 @@ def render(paper_cards: List[Dict], submission_cards: List[Dict],
 
     out += ["## Post-paper submissions", ""]
     if submission_cards:
-        out += ["Evaluated after publication with the same prompts, judge "
-                "and scorer. Any departure from the paper protocol is listed "
-                "under the table. These are new measurements, not revisions "
-                "to the paper.", "", _headline_table(submission_cards), "",
+        out += ["Evaluated after publication with the same prompts, rubric "
+                "and scorer. These are new measurements, not revisions to the "
+                "paper.", "",
+                "The **Protocol** column says how each row was produced. "
+                "`paper` is the published setup (500-token generations, "
+                "Claude Opus 4.8 judge). `latest` is the default for new "
+                "evaluations (2,000 tokens, Claude Fable 5.2 judge). `custom` "
+                "is any other combination. Compare scores only within the "
+                "same protocol: the token limit and the judge can both change NDS.",
+                "", _headline_table(submission_cards, show_protocol=True), "",
                 *_deviation_notes(submission_cards),
                 "### NDS by domain", "", _per_domain_table(submission_cards), ""]
     else:
