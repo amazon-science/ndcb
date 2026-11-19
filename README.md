@@ -89,22 +89,12 @@ ndcb info                                      # show what was found
 Downloads are checksum-verified against the released files; a mismatch fails
 loudly rather than silently changing your score.
 
-### Why pre-rendered prompts?
-
-The prompts sent to the model are **replayed verbatim**, not rebuilt. The
-original prompt-construction code drifted after the paper's data was collected
-and can no longer reproduce what was actually sent — in particular it emits
-only the single-pick normative variant, while 442 of the 697 scenarios used a
-per-candidate variant. `prompts.jsonl` was reconstructed from the prompt text
-recorded in every stored judge record and verified byte-identical across all
-six models and all three runs (zero conflicts across 1,394 keys). Replaying it
-is the only way to reproduce the published numbers exactly.
-
 ## Evaluate a model
 
 Use the same settings for new evaluations on every backend:
 
-- **Generations:** 2,000-token limit, temperature 0, three runs per scenario
+- **Generations:** 2,000-token limit (the paper used 500; pass
+  `--max-tokens 500` to reproduce it), temperature 0, three runs per scenario
   per framing, all six domains, and the released prompts unchanged.
 - **Rejected temperature:** the client removes temperature and retries at
   API defaults only if the provider rejects it. This is the paper's
