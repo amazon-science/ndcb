@@ -42,13 +42,25 @@ The six models from the publication, frozen as published. Regenerated from the p
 
 Evaluated after publication with the same prompts, rubric and scorer. These are new measurements, not revisions to the paper.
 
-The **Protocol** column says how each row was produced. `paper` is the published setup (500-token generations, Claude Opus 4.8 judge). `latest` is the default for new evaluations (2,000 tokens, Claude Fable 5.2 judge). `custom` is any other combination. Compare scores only within the same protocol: the token limit and the judge can both change NDS.
+The **Protocol** column says how each row was produced. `paper` runs each model with its settings in the paper and the Claude Opus 4.8 judge. `latest` is the default for new evaluations: 2,000 tokens, temperature 0 and thinking off for every model, with the Claude Fable 5.2 judge. `custom` is any other combination. Compare scores only within the same protocol: the token limit and the judge can both change NDS.
 
 | Model | Protocol | Avg. NDS | 95% CI | Avg. NER | Avg. NLR | Profile | n |
 |---|---|---:|---|---:|---:|---|---:|
+| Claude Opus 4.6 (latest generation settings) | custom | **+0.58** | [+0.55, +0.61] | 0.72 | 0.14 | calibration | 697 |
+| Claude Sonnet 4.6 (latest generation settings) | custom | **+0.54** | [+0.50, +0.58] | 0.78 | 0.24 | calibration | 697 |
 | Claude Opus 5.5 | custom | **+0.05** | [+0.03, +0.06] | 1.00 | 0.95 | divergence | 697 |
 | GPT-6 Astra (Bedrock, max_tokens=2000) ⚠️ | latest | **-0.34** | [-0.35, -0.34] | 0.66 | 1.00 | convergence | 697 |
 
+
+**Claude Opus 4.6 (latest generation settings)** deviates from the paper protocol:
+- Generation with the `latest` settings: 2,000-token limit, thinking off, temperature 0. The paper ran this model with thinking on (1,024-token budget), a 2,500-token limit and temperature 1.
+- Judged by the paper's Claude Opus 4.8, so the score differs from the paper row only through the generation settings.
+- Paper score for comparison: +0.52 [+0.49, +0.56]; this run: +0.58 [+0.55, +0.61].
+
+**Claude Sonnet 4.6 (latest generation settings)** deviates from the paper protocol:
+- Generation with the `latest` settings: 2,000-token limit, thinking off, temperature 0. The paper ran this model with thinking on (1,024-token budget), a 2,500-token limit and temperature 1.
+- Judged by the paper's Claude Opus 4.8, so the score differs from the paper row only through the generation settings.
+- Paper score for comparison: +0.55 [+0.51, +0.59]; this run: +0.54 [+0.50, +0.58].
 
 **Claude Opus 5.5** deviates from the paper protocol:
 - max_tokens 2000 instead of the paper's 500: at 500, 68% of pilot calls were truncated (paper models: 0-3%); at 2000, 0 of 4,182 were.
@@ -58,6 +70,8 @@ The **Protocol** column says how each row was produced. `paper` is the published
 
 | Model | Crim. Just. | Housing | Hiring | Education | Cust. Svc. | Cont. Mod. | Avg. |
 |---|---|---|---|---|---|---|---|
+| Claude Opus 4.6 (latest generation settings) | +0.98 | +0.33 | +0.14 | +0.25 | +1.00 | +0.79 | **+0.58** |
+| Claude Sonnet 4.6 (latest generation settings) | +0.71 | +0.32 | +0.10 | +0.38 | +0.89 | +0.83 | **+0.54** |
 | Claude Opus 5.5 | +0.00 | +0.20 | +0.01 | +0.03 | +0.00 | +0.03 | **+0.05** |
 | GPT-6 Astra (Bedrock, max_tokens=2000) | +0.00 | -1.00 | -1.00 | -0.06 | +0.00 | +0.00 | **-0.34** |
 

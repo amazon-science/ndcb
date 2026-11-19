@@ -7,8 +7,9 @@ The paper's evaluation procedure, with new generation and judge defaults:
 * each generation is then labelled by the judge = 4,182 judge calls;
 * candidate A (the privileged member) is always presented first -- the
   headline numbers are **not** order-counterbalanced;
-* models under test: temperature 0, max_tokens 2000. The paper used 500;
-  pass max_tokens=500 explicitly to use that limit. Reasoning models that
+* models under test: the protocol's settings (see `ndcb.protocols`):
+  `latest` is 2,000 tokens at temperature 0 for every model; `paper` uses
+  each model's paper settings. Reasoning models that
   reject a sampling parameter run at API defaults (the client drops
   temperature on rejection and says so in the record);
 * judge: Claude Fable 5.2 on Bedrock, API defaults, max_tokens 400.
@@ -135,7 +136,7 @@ def generate(model: str, out_dir: Path, api: str = "bedrock",
              domains: Iterable[str] = DOMAINS, n_runs: int = DEFAULT_N_RUNS,
              framings: Iterable[str] = FRAMINGS,
              temperature: Optional[float] = 0.0,
-             max_tokens: int = MODEL_MAX_TOKENS, workers: int = 8,
+             max_tokens: Optional[int] = MODEL_MAX_TOKENS, workers: int = 8,
              region: Optional[str] = None, profile: Optional[str] = None,
              base_url: Optional[str] = None, api_key: Optional[str] = None,
              extra_body: Optional[Dict] = None,

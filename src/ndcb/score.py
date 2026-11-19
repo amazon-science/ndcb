@@ -17,7 +17,7 @@ from .metrics import (DEFAULT_ALPHA, DEFAULT_BOOTSTRAP_ITERS,
                       DEFAULT_BOOTSTRAP_SEED, DOMAINS, aggregate_over_domains,
                       classify_profile, collapse_to_scenarios,
                       compute_leakage_metrics, parse_direction)
-from .protocols import classify
+from .protocols import classify, from_records
 from .run import FRAMINGS, _results_path, count_failed, latest_ok, load_judged, read_jsonl
 
 #: Scenarios per domain in the released benchmark.
@@ -49,6 +49,8 @@ def score_dir(out_dir: Path, model: str = "", domains: Iterable[str] = DOMAINS,
     total_verdicts = 0
     judges = set()
     gen_max_tokens = set()
+    gen_protocols: set = set()
+    judge_protocols: set = set()
     failed_judge_calls = 0
 
     for domain in domains:
@@ -68,6 +70,8 @@ def score_dir(out_dir: Path, model: str = "", domains: Iterable[str] = DOMAINS,
             # made before protocols existed do not copy it.
             for g in latest_ok(read_jsonl(_results_path(out_dir, domain, f))):
                 gen_max_tokens.add(g.get("max_tokens"))
+                gen_protocols.add(g.get("protocol"))
+            judge_protocols.update(r.get("protocol") for r in judged[f])
 
         per_domain[domain] = compute_leakage_metrics(
             judged["normative"], judged["descriptive"],
@@ -100,7 +104,11 @@ def score_dir(out_dir: Path, model: str = "", domains: Iterable[str] = DOMAINS,
                 and failed_judge_calls == 0)
 
     judge_for_protocol = [judge_model] if judge_model else (judges or {None})
-    protocol = classify(gen_max_tokens or {None}, judge_for_protocol)
+    if judge_model:     # an overridden judge can't be trusted to match records
+        protocol = classify(gen_max_tokens or {None}, judge_for_protocol)
+    else:
+        protocol = from_records(gen_protocols, judge_protocols,
+                                gen_max_tokens or {None}, judge_for_protocol)
 
     return {
         "model": model,

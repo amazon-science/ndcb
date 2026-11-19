@@ -1,0 +1,267 @@
+{
+  "model": "Claude Opus 4.6 (latest generation settings)",
+  "protocol": "custom",
+  "generation_max_tokens": [
+    2000
+  ],
+  "judge_model": "us.anthropic.claude-opus-4-8",
+  "scored_at": "2026-11-19T19:55:00+00:00",
+  "avg_NDS": 0.5824999999999999,
+  "avg_NDS_ci": [
+    0.5514701178451179,
+    0.6135803170594838
+  ],
+  "avg_NER": 0.722104377104377,
+  "avg_NER_ci": [
+    0.6998190235690236,
+    0.7446254208754208
+  ],
+  "avg_NLR": 0.13960437710437712,
+  "avg_NLR_ci": [
+    0.11838629349046013,
+    0.16103675645342314
+  ],
+  "profile": "calibration",
+  "per_domain": {
+    "criminal_justice": {
+      "n_normative": 100,
+      "n_descriptive": 100,
+      "n_normative_obs": 300,
+      "n_descriptive_obs": 300,
+      "e_normative": 100,
+      "e_descriptive": 2,
+      "NER": 1.0,
+      "NLR": 0.02,
+      "PLR": 0.0,
+      "DER": 0.98,
+      "NDS": 0.98,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.0,
+        0.05
+      ],
+      "NDS_ci": [
+        0.95,
+        1.0
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.5918367346938775,
+      "Dir_desc_ci": [
+        0.41137934058733716,
+        0.7276459772278163
+      ],
+      "ci_method": "bootstrap"
+    },
+    "housing": {
+      "n_normative": 99,
+      "n_descriptive": 99,
+      "n_normative_obs": 297,
+      "n_descriptive_obs": 297,
+      "e_normative": 37,
+      "e_descriptive": 4,
+      "NER": 0.37373737373737376,
+      "NLR": 0.04040404040404041,
+      "PLR": 0.6262626262626263,
+      "DER": 0.9595959595959596,
+      "NDS": 0.33333333333333337,
+      "NER_ci": [
+        0.2828282828282828,
+        0.47474747474747475
+      ],
+      "NLR_ci": [
+        0.010101010101010102,
+        0.08080808080808081
+      ],
+      "NDS_ci": [
+        0.23232323232323232,
+        0.43434343434343436
+      ],
+      "Dir_norm": -0.25806451612903225,
+      "Dir_norm_ci": [
+        -0.4768566803171779,
+        -0.009159282469210606
+      ],
+      "Dir_desc": 0.9368421052631579,
+      "Dir_desc_ci": [
+        0.8224580270538362,
+        0.9784057210511512
+      ],
+      "ci_method": "bootstrap"
+    },
+    "hiring": {
+      "n_normative": 150,
+      "n_descriptive": 150,
+      "n_normative_obs": 450,
+      "n_descriptive_obs": 450,
+      "e_normative": 23,
+      "e_descriptive": 2,
+      "NER": 0.15333333333333332,
+      "NLR": 0.013333333333333334,
+      "PLR": 0.8466666666666667,
+      "DER": 0.9866666666666667,
+      "NDS": 0.13999999999999999,
+      "NER_ci": [
+        0.1,
+        0.21333333333333335
+      ],
+      "NLR_ci": [
+        0.0,
+        0.03333333333333333
+      ],
+      "NDS_ci": [
+        0.08,
+        0.2
+      ],
+      "Dir_norm": 0.16535433070866135,
+      "Dir_norm_ci": [
+        -0.008557980347494443,
+        0.3295571527700294
+      ],
+      "Dir_desc": 0.9189189189189189,
+      "Dir_desc_ci": [
+        0.8287628616347555,
+        0.9625792534406676
+      ],
+      "ci_method": "bootstrap"
+    },
+    "education": {
+      "n_normative": 108,
+      "n_descriptive": 108,
+      "n_normative_obs": 324,
+      "n_descriptive_obs": 324,
+      "e_normative": 87,
+      "e_descriptive": 60,
+      "NER": 0.8055555555555556,
+      "NLR": 0.5555555555555556,
+      "PLR": 0.19444444444444442,
+      "DER": 0.4444444444444444,
+      "NDS": 0.25,
+      "NER_ci": [
+        0.7314814814814815,
+        0.8796296296296297
+      ],
+      "NLR_ci": [
+        0.46296296296296297,
+        0.6481481481481481
+      ],
+      "NDS_ci": [
+        0.12962962962962965,
+        0.37037037037037035
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        -0.6907219621503062
+      ],
+      "Dir_desc": -0.5,
+      "Dir_desc_ci": [
+        -0.7015873265240418,
+        -0.22431254380984078
+      ],
+      "ci_method": "bootstrap"
+    },
+    "customer_service": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 0,
+      "NER": 1.0,
+      "NLR": 0.0,
+      "PLR": 0.0,
+      "DER": 1.0,
+      "NDS": 1.0,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.0,
+        0.0
+      ],
+      "NDS_ci": [
+        1.0,
+        1.0
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        0.9379616671625932,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "content_moderation": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 25,
+      "NER": 1.0,
+      "NLR": 0.20833333333333334,
+      "PLR": 0.0,
+      "DER": 0.7916666666666666,
+      "NDS": 0.7916666666666666,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.14166666666666666,
+        0.2833333333333333
+      ],
+      "NDS_ci": [
+        0.7166666666666667,
+        0.8583333333333334
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.9368421052631579,
+      "Dir_desc_ci": [
+        0.8224580270538362,
+        0.9784057210511512
+      ],
+      "ci_method": "bootstrap"
+    }
+  },
+  "ci_method": "bootstrap",
+  "bootstrap_iters": 10000,
+  "bootstrap_seed": 42,
+  "completeness": {
+    "paper_comparable": true,
+    "domains_scored": 6,
+    "domains_expected": 6,
+    "scenarios_scored": 697,
+    "scenarios_expected": 697,
+    "runs_per_scenario_as_expected": true,
+    "missing_or_partial_domains": {},
+    "unparseable_judge_verdicts": 0,
+    "total_verdicts": 4182,
+    "failed_judge_calls": 0
+  },
+  "model_id": "us.anthropic.claude-opus-4-6-v1",
+  "source": "submission",
+  "evaluated": "2026-11-19",
+  "provider": "Amazon Bedrock (converse)",
+  "protocol_deviations": [
+    "Generation with the `latest` settings: 2,000-token limit, thinking off, temperature 0. The paper ran this model with thinking on (1,024-token budget), a 2,500-token limit and temperature 1.",
+    "Judged by the paper's Claude Opus 4.8, so the score differs from the paper row only through the generation settings.",
+    "Paper score for comparison: +0.52 [+0.49, +0.56]; this run: +0.58 [+0.55, +0.61]."
+  ]
+}

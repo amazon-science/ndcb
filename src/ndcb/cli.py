@@ -19,7 +19,7 @@ from .dataset import (CHECKSUMS, DATA_FILES, cache_dir, candidate_dirs,
 from .metrics import (DEFAULT_ALPHA, DEFAULT_BOOTSTRAP_ITERS,
                       DEFAULT_BOOTSTRAP_SEED, DOMAINS)
 from .prompts import JUDGE_MAX_TOKENS, MODEL_MAX_TOKENS
-from .protocols import DEFAULT_PROTOCOL, PROTOCOLS, judge_model_id
+from .protocols import DEFAULT_PROTOCOL, PROTOCOLS, judge_model_id, normalise_model
 from .run import DEFAULT_N_RUNS
 
 
@@ -68,17 +68,29 @@ def _cmd_info(args) -> int:
 
 def _cmd_run(args) -> int:
     from .run import generate
-    extra = json.loads(args.extra_body) if args.extra_body else None
-    max_tokens = args.max_tokens or PROTOCOLS[args.protocol].max_tokens
-    print(f"protocol {args.protocol}: max_tokens={max_tokens}")
+    settings = PROTOCOLS[args.protocol].generation(args.model)
+    overridden = (args.max_tokens is not None or args.temperature is not None
+                  or args.no_temperature or args.extra_body is not None)
+    max_tokens = args.max_tokens if args.max_tokens is not None else settings.max_tokens
+    if args.no_temperature:
+        temperature = None
+    elif args.temperature is not None:
+        temperature = args.temperature
+    else:
+        temperature = settings.temperature
+    extra = (json.loads(args.extra_body) if args.extra_body is not None
+             else settings.extra_body(args.api))
+    protocol = "custom" if overridden else args.protocol
+    print(f"protocol {protocol}: max_tokens={max_tokens}, temperature={temperature}, "
+          f"extra={extra}")
     counts = generate(
         model=args.model, out_dir=args.out, api=args.api,
         domains=args.domains or DOMAINS, n_runs=args.runs,
-        temperature=None if args.no_temperature else args.temperature,
+        temperature=temperature,
         max_tokens=max_tokens, workers=args.workers,
         region=args.region, profile=args.profile, base_url=args.base_url,
         api_key=args.api_key, extra_body=extra, limit=args.limit,
-        protocol=args.protocol)
+        protocol=protocol)
     total = sum(counts.values())
     print(f"generation pass complete; {total} new calls made into {args.out}")
     return 0
@@ -87,13 +99,16 @@ def _cmd_run(args) -> int:
 def _cmd_judge(args) -> int:
     from .run import judge
     judge_model = args.judge_model or judge_model_id(args.protocol, args.api)
-    print(f"protocol {args.protocol}: judge={judge_model}")
+    protocol = (args.protocol
+                if normalise_model(judge_model) == PROTOCOLS[args.protocol].judge
+                else "custom")
+    print(f"protocol {protocol}: judge={judge_model}")
     counts = judge(
         model=args.model or "", out_dir=args.out, judge_model=judge_model,
         judge_api=args.api, domains=args.domains or DOMAINS,
         workers=args.workers, region=args.region, profile=args.profile,
         base_url=args.base_url, api_key=args.api_key, swapped=args.swapped,
-        protocol=args.protocol)
+        protocol=protocol)
     total = sum(counts.values())
     print(f"judging pass complete; {total} new judge calls made into {args.out}")
     return 0
@@ -180,14 +195,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--out", required=True, help="output directory for this run")
     p.add_argument("--runs", type=int, default=DEFAULT_N_RUNS,
                    help=f"runs per scenario per framing (default: {DEFAULT_N_RUNS})")
-    p.add_argument("--temperature", type=float, default=0.0)
+    p.add_argument("--temperature", type=float, default=None,
+                   help="sampling temperature (default: the protocol's -- 0, "
+                        "or 1 for models the paper ran with thinking). "
+                        "Overriding it makes the score 'custom'.")
     p.add_argument("--no-temperature", action="store_true",
                    help="omit temperature entirely (reasoning models)")
     _add_protocol_arg(p)
     p.add_argument("--max-tokens", type=int, default=None,
                    help="generation token limit (default: the protocol's -- "
-                        "paper 500, latest 2000). Overriding it makes the "
-                        "score 'custom'.")
+                        "latest 2000; paper uses each model's paper setting). "
+                        "Overriding it makes the score 'custom'.")
     p.add_argument("--extra-body", default=None,
                    help='provider passthrough as JSON, e.g. \'{"reasoning_effort":"medium"}\'')
     p.add_argument("--limit", type=int, default=None,

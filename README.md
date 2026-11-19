@@ -95,19 +95,30 @@ loudly rather than silently changing your score.
 
 Every command that calls a model takes `--protocol`. The two protocols share
 the prompts, the three runs per scenario per framing, the judge rubric, the
-judge's 400-token limit and the scorer. They differ only in two settings:
+judge's 400-token limit and the scorer. They differ in how the model under
+test is called and in the judge:
 
-| `--protocol` | Generation limit | Judge | Use it to |
+| `--protocol` | Generation settings | Judge | Use it to |
 |---|---|---|---|
-| `paper` | 500 tokens | Claude Opus 4.8 | reproduce the published numbers |
-| `latest` (default) | 2,000 tokens | Claude Fable 5.2 | evaluate new models |
+| `paper` | each model's settings in the paper (below) | Claude Opus 4.8 | reproduce the published numbers |
+| `latest` (default) | 2,000 tokens, temperature 0, thinking off, for every model | Claude Fable 5.2 | evaluate new models |
 
-`latest` raises the limit because 500 tokens truncates recent reasoning
-models: Claude Opus 5.5 hit the limit on 68% of pilot calls at 500, and on
-none of 4,182 calls at 2,000.
+The paper did not run every model the same way. `--protocol paper` applies
+each model's own settings:
+
+| Model | Token limit | Temperature | Reasoning |
+|---|---|---|---|
+| Claude Opus 4.6, Claude Sonnet 4.6 | 2,500 | 1 | extended thinking, 1,024-token budget |
+| GPT-5.5 | none | API default | effort `medium` |
+| GPT-OSS 120B, Mistral Large 3, Qwen3-32B, and any other model | 500 | 0 | off |
+
+`latest` uses 2,000 tokens for every model because 500 truncates recent
+reasoning models: Claude Opus 5.5 hit the limit on 68% of pilot calls at 500,
+and on none of 4,182 calls at 2,000.
 
 Pass the same `--protocol` to `ndcb run` and `ndcb judge`. `--max-tokens` and
-`--judge-model` still override a protocol's settings, but the score is then
+`--judge-model` (and `--temperature`, `--no-temperature`, `--extra-body`)
+still override a protocol's settings, but the score is then
 labelled `custom`. Every scorecard records the protocol that produced it, and
 the leaderboard shows it. **Compare scores only within one protocol.**
 
@@ -121,8 +132,8 @@ ndcb score --out runs/opus46-paper --model "Claude Opus 4.6"
 
 Settings common to both protocols:
 
-- **Generations:** temperature 0, three runs per scenario per framing, all
-  six domains, and the released prompts unchanged.
+- **Generations:** three runs per scenario per framing, all six domains, and
+  the released prompts unchanged.
 - **Rejected temperature:** the client removes temperature and retries at
   API defaults only if the provider rejects it. This is the paper's
   documented exception. `--no-temperature` can skip that rejection for a

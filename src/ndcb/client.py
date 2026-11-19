@@ -82,7 +82,7 @@ class ChatClient:
     def __init__(self, model: str, base_url: Optional[str] = None,
                  api_key: Optional[str] = None, api: str = "openai",
                  temperature: Optional[float] = 0.0,
-                 max_tokens: int = MODEL_MAX_TOKENS,
+                 max_tokens: Optional[int] = MODEL_MAX_TOKENS,
                  timeout: float = DEFAULT_TIMEOUT,
                  max_retries: int = DEFAULT_MAX_RETRIES,
                  region: Optional[str] = None, profile: Optional[str] = None,
@@ -93,6 +93,9 @@ class ChatClient:
         self.model = model
         self.api = api
         self.temperature = temperature
+        if max_tokens is None and api == "anthropic":
+            raise ValueError("the Anthropic API requires a token limit")
+        #: None sends no limit (the paper ran GPT-5.5 that way).
         self.max_tokens = max_tokens
         self.timeout = timeout
         self.max_retries = max_retries
@@ -166,9 +169,10 @@ class ChatClient:
         body: Dict = {
             "model": self.model,
             "messages": [{"role": "user", "content": prompt}],
-            "max_tokens" if self.api == "anthropic" else "max_completion_tokens":
-                self.max_tokens,
         }
+        if self.max_tokens is not None:
+            body["max_tokens" if self.api == "anthropic"
+                 else "max_completion_tokens"] = self.max_tokens
         if self.temperature is not None:
             body["temperature"] = self.temperature
         body.update(self.extra_body)
@@ -192,7 +196,9 @@ class ChatClient:
 
     # -- bedrock ------------------------------------------------------------ #
     def _complete_bedrock(self, prompt: str) -> Completion:
-        inference: Dict = {"maxTokens": self.max_tokens}
+        inference: Dict = {}
+        if self.max_tokens is not None:
+            inference["maxTokens"] = self.max_tokens
         if self.temperature is not None:
             inference["temperature"] = self.temperature
         kwargs: Dict = {

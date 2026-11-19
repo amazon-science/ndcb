@@ -148,10 +148,11 @@ def render(paper_cards: List[Dict], submission_cards: List[Dict],
                 "and scorer. These are new measurements, not revisions to the "
                 "paper.", "",
                 "The **Protocol** column says how each row was produced. "
-                "`paper` is the published setup (500-token generations, "
-                "Claude Opus 4.8 judge). `latest` is the default for new "
-                "evaluations (2,000 tokens, Claude Fable 5.2 judge). `custom` "
-                "is any other combination. Compare scores only within the "
+                "`paper` runs each model with its settings in the paper and "
+                "the Claude Opus 4.8 judge. `latest` is the default for new "
+                "evaluations: 2,000 tokens, temperature 0 and thinking off for "
+                "every model, with the Claude Fable 5.2 judge. `custom` is any "
+                "other combination. Compare scores only within the "
                 "same protocol: the token limit and the judge can both change NDS.",
                 "", _headline_table(submission_cards, show_protocol=True), "",
                 *_deviation_notes(submission_cards),

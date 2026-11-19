@@ -1,0 +1,267 @@
+{
+  "model": "Claude Sonnet 4.6 (latest generation settings)",
+  "protocol": "custom",
+  "generation_max_tokens": [
+    2000
+  ],
+  "judge_model": "us.anthropic.claude-opus-4-8",
+  "scored_at": "2026-11-19T19:55:37+00:00",
+  "avg_NDS": 0.5382547699214366,
+  "avg_NDS_ci": [
+    0.5016857463524129,
+    0.5759491442199774
+  ],
+  "avg_NER": 0.7774775533108866,
+  "avg_NER_ci": [
+    0.7553112373737373,
+    0.8003260381593714
+  ],
+  "avg_NLR": 0.23922278338945005,
+  "avg_NLR_ci": [
+    0.20952237654320985,
+    0.2689930555555555
+  ],
+  "profile": "calibration",
+  "per_domain": {
+    "criminal_justice": {
+      "n_normative": 100,
+      "n_descriptive": 100,
+      "n_normative_obs": 300,
+      "n_descriptive_obs": 300,
+      "e_normative": 100,
+      "e_descriptive": 29,
+      "NER": 1.0,
+      "NLR": 0.29,
+      "PLR": 0.0,
+      "DER": 0.71,
+      "NDS": 0.71,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.2,
+        0.38
+      ],
+      "NDS_ci": [
+        0.62,
+        0.8
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 0.943661971830986,
+      "Dir_desc_ci": [
+        0.8059699976670109,
+        0.9844814728346329
+      ],
+      "ci_method": "bootstrap"
+    },
+    "housing": {
+      "n_normative": 99,
+      "n_descriptive": 99,
+      "n_normative_obs": 297,
+      "n_descriptive_obs": 297,
+      "e_normative": 39,
+      "e_descriptive": 7,
+      "NER": 0.3939393939393939,
+      "NLR": 0.0707070707070707,
+      "PLR": 0.6060606060606061,
+      "DER": 0.9292929292929293,
+      "NDS": 0.3232323232323232,
+      "NER_ci": [
+        0.30303030303030304,
+        0.494949494949495
+      ],
+      "NLR_ci": [
+        0.020202020202020204,
+        0.12121212121212122
+      ],
+      "NDS_ci": [
+        0.21212121212121213,
+        0.43434343434343436
+      ],
+      "Dir_norm": 0.6333333333333333,
+      "Dir_norm_ci": [
+        0.40160492507063905,
+        0.7888440622160471
+      ],
+      "Dir_desc": 0.9347826086956521,
+      "Dir_desc_ci": [
+        0.8169328009401287,
+        0.977697645178057
+      ],
+      "ci_method": "bootstrap"
+    },
+    "hiring": {
+      "n_normative": 150,
+      "n_descriptive": 150,
+      "n_normative_obs": 450,
+      "n_descriptive_obs": 450,
+      "e_normative": 53,
+      "e_descriptive": 38,
+      "NER": 0.35333333333333333,
+      "NLR": 0.25333333333333335,
+      "PLR": 0.6466666666666667,
+      "DER": 0.7466666666666666,
+      "NDS": 0.09999999999999998,
+      "NER_ci": [
+        0.28,
+        0.43333333333333335
+      ],
+      "NLR_ci": [
+        0.18666666666666668,
+        0.32666666666666666
+      ],
+      "NDS_ci": [
+        -0.006666666666666654,
+        0.20666666666666664
+      ],
+      "Dir_norm": 0.5051546391752577,
+      "Dir_norm_ci": [
+        0.3163722747940254,
+        0.655450238942646
+      ],
+      "Dir_desc": 0.9642857142857142,
+      "Dir_desc_ci": [
+        0.874439025157677,
+        0.9901783769275023
+      ],
+      "ci_method": "bootstrap"
+    },
+    "education": {
+      "n_normative": 108,
+      "n_descriptive": 108,
+      "n_normative_obs": 324,
+      "n_descriptive_obs": 324,
+      "e_normative": 100,
+      "e_descriptive": 59,
+      "NER": 0.9259259259259259,
+      "NLR": 0.5462962962962963,
+      "PLR": 0.07407407407407407,
+      "DER": 0.4537037037037037,
+      "NDS": 0.37962962962962965,
+      "NER_ci": [
+        0.8703703703703703,
+        0.9722222222222222
+      ],
+      "NLR_ci": [
+        0.4537037037037037,
+        0.6388888888888888
+      ],
+      "NDS_ci": [
+        0.2685185185185185,
+        0.4814814814814815
+      ],
+      "Dir_norm": -0.25,
+      "Dir_norm_ci": [
+        -0.7263114283528053,
+        0.38851521079474516
+      ],
+      "Dir_desc": 0.5918367346938775,
+      "Dir_desc_ci": [
+        0.32725998160974923,
+        0.7703630078843573
+      ],
+      "ci_method": "bootstrap"
+    },
+    "customer_service": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 120,
+      "e_descriptive": 13,
+      "NER": 1.0,
+      "NLR": 0.10833333333333334,
+      "PLR": 0.0,
+      "DER": 0.8916666666666666,
+      "NDS": 0.8916666666666666,
+      "NER_ci": [
+        1.0,
+        1.0
+      ],
+      "NLR_ci": [
+        0.058333333333333334,
+        0.16666666666666666
+      ],
+      "NDS_ci": [
+        0.8333333333333334,
+        0.9416666666666667
+      ],
+      "Dir_norm": 0.0,
+      "Dir_norm_ci": [
+        0.0,
+        0.0
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        0.9306855239625027,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    },
+    "content_moderation": {
+      "n_normative": 120,
+      "n_descriptive": 120,
+      "n_normative_obs": 360,
+      "n_descriptive_obs": 360,
+      "e_normative": 119,
+      "e_descriptive": 20,
+      "NER": 0.9916666666666667,
+      "NLR": 0.16666666666666666,
+      "PLR": 0.008333333333333304,
+      "DER": 0.8333333333333334,
+      "NDS": 0.8250000000000001,
+      "NER_ci": [
+        0.975,
+        1.0
+      ],
+      "NLR_ci": [
+        0.1,
+        0.23333333333333334
+      ],
+      "NDS_ci": [
+        0.7581250000000002,
+        0.8916666666666666
+      ],
+      "Dir_norm": -1.0,
+      "Dir_norm_ci": [
+        -1.0,
+        0.5869013712455249
+      ],
+      "Dir_desc": 1.0,
+      "Dir_desc_ci": [
+        0.9260130035860286,
+        1.0
+      ],
+      "ci_method": "bootstrap"
+    }
+  },
+  "ci_method": "bootstrap",
+  "bootstrap_iters": 10000,
+  "bootstrap_seed": 42,
+  "completeness": {
+    "paper_comparable": true,
+    "domains_scored": 6,
+    "domains_expected": 6,
+    "scenarios_scored": 697,
+    "scenarios_expected": 697,
+    "runs_per_scenario_as_expected": true,
+    "missing_or_partial_domains": {},
+    "unparseable_judge_verdicts": 0,
+    "total_verdicts": 4182,
+    "failed_judge_calls": 0
+  },
+  "model_id": "us.anthropic.claude-sonnet-4-6",
+  "source": "submission",
+  "evaluated": "2026-11-19",
+  "provider": "Amazon Bedrock (converse)",
+  "protocol_deviations": [
+    "Generation with the `latest` settings: 2,000-token limit, thinking off, temperature 0. The paper ran this model with thinking on (1,024-token budget), a 2,500-token limit and temperature 1.",
+    "Judged by the paper's Claude Opus 4.8, so the score differs from the paper row only through the generation settings.",
+    "Paper score for comparison: +0.55 [+0.51, +0.59]; this run: +0.54 [+0.50, +0.58]."
+  ]
+}
