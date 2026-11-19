@@ -197,14 +197,14 @@ def build_parser() -> argparse.ArgumentParser:
                    help=f"runs per scenario per framing (default: {DEFAULT_N_RUNS})")
     p.add_argument("--temperature", type=float, default=None,
                    help="sampling temperature (default: the protocol's -- 0, "
-                        "or 1 for models the paper ran with thinking). "
+                        "or the API default for models that reject one). "
                         "Overriding it makes the score 'custom'.")
     p.add_argument("--no-temperature", action="store_true",
                    help="omit temperature entirely (reasoning models)")
     _add_protocol_arg(p)
     p.add_argument("--max-tokens", type=int, default=None,
                    help="generation token limit (default: the protocol's -- "
-                        "latest 2000; paper uses each model's paper setting). "
+                        "latest 2000; paper 500, or 3000 for GPT-5.5). "
                         "Overriding it makes the score 'custom'.")
     p.add_argument("--extra-body", default=None,
                    help='provider passthrough as JSON, e.g. \'{"reasoning_effort":"medium"}\'')

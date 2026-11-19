@@ -139,27 +139,18 @@ def test_frozen_paper_cards_are_labelled_paper():
 
 
 # --- per-model paper settings --------------------------------------------- #
-@pytest.mark.parametrize("model_id", [
-    "us.anthropic.claude-opus-4-6-v1", "claude-opus-4-6",
-    "us.anthropic.claude-sonnet-4-6", "global.anthropic.claude-sonnet-4-6",
-])
-def test_paper_claude_46_runs_with_thinking(model_id):
-    g = PROTOCOLS["paper"].generation(model_id)
-    assert (g.max_tokens, g.temperature, g.thinking_budget) == (2500, 1.0, 1024)
-
-
 @pytest.mark.parametrize("model_id", ["openai.gpt-5.5", "gpt-5.5"])
-def test_paper_gpt55_has_no_limit_and_medium_effort(model_id):
+def test_paper_gpt55_gets_3000_tokens_and_no_temperature(model_id):
     g = PROTOCOLS["paper"].generation(model_id)
-    assert g.max_tokens is None and g.temperature is None
-    assert g.reasoning_effort == "medium"
+    assert (g.max_tokens, g.temperature, g.thinking_budget, g.reasoning_effort) == (3000, None, None, None)
 
 
 @pytest.mark.parametrize("model_id", [
+    "us.anthropic.claude-opus-4-6-v1", "us.anthropic.claude-sonnet-4-6",
     "qwen.qwen3-32b-v1:0", "openai.gpt-oss-120b-1:0",
     "mistral.mistral-large-3-675b-instruct", "us.anthropic.claude-opus-5-5",
 ])
-def test_paper_other_models_use_500_at_temperature_0(model_id):
+def test_paper_every_other_model_uses_500_at_temperature_0_without_thinking(model_id):
     g = PROTOCOLS["paper"].generation(model_id)
     assert (g.max_tokens, g.temperature, g.thinking_budget, g.reasoning_effort) == (500, 0.0, None, None)
 
@@ -173,16 +164,21 @@ def test_latest_uses_one_setting_for_every_model(model_id):
 
 
 def test_extra_body_per_backend():
-    t = PROTOCOLS["paper"].generation("claude-opus-4-6")
+    """Neither protocol currently needs provider fields, but the helper must
+    still map thinking and reasoning effort correctly if they are used."""
+    from ndcb.protocols import GenerationSettings
+    t = GenerationSettings(max_tokens=2500, temperature=1.0, thinking_budget=1024)
     assert t.extra_body("bedrock") == {"additionalModelRequestFields": {
         "thinking": {"type": "enabled", "budget_tokens": 1024}}}
     assert t.extra_body("anthropic") == {"thinking": {"type": "enabled", "budget_tokens": 1024}}
     with pytest.raises(ValueError):
         t.extra_body("openai")
-    r = PROTOCOLS["paper"].generation("gpt-5.5")
+    r = GenerationSettings(max_tokens=None, temperature=None, reasoning_effort="medium")
     assert r.extra_body("openai") == {"reasoning_effort": "medium"}
     assert r.extra_body("bedrock") == {"additionalModelRequestFields": {"reasoning_effort": "medium"}}
-    assert PROTOCOLS["latest"].generation("x").extra_body("bedrock") is None
+    for proto in PROTOCOLS.values():
+        for model in ("claude-opus-4-6", "gpt-5.5", "x"):
+            assert proto.generation(model).extra_body("bedrock") is None
 
 
 def test_cli_paper_protocol_applies_per_model_settings(monkeypatch):
@@ -190,11 +186,10 @@ def test_cli_paper_protocol_applies_per_model_settings(monkeypatch):
     seen = {}
     monkeypatch.setattr("ndcb.run.generate", lambda **kw: seen.update(kw) or {})
     cli.main(["run", "--protocol", "paper", "--model", "us.anthropic.claude-sonnet-4-6", "--out", "o"])
-    assert seen["max_tokens"] == 2500 and seen["temperature"] == 1.0
-    assert seen["extra_body"]["additionalModelRequestFields"]["thinking"]["budget_tokens"] == 1024
+    assert (seen["max_tokens"], seen["temperature"], seen["extra_body"]) == (500, 0.0, None)
     assert seen["protocol"] == "paper"
     cli.main(["run", "--protocol", "paper", "--model", "openai.gpt-5.5", "--out", "o"])
-    assert seen["max_tokens"] is None and seen["temperature"] is None
+    assert (seen["max_tokens"], seen["temperature"]) == (3000, None)
     assert seen["protocol"] == "paper"
 
 

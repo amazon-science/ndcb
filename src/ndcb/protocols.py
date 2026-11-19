@@ -8,15 +8,20 @@ the judge.
 model: 2,000 tokens, temperature 0, thinking off, judged by Claude Fable 5.2.
 
 ``paper`` reproduces how each model was run in the paper, judged by Claude
-Opus 4.8. The paper did not use one setting for every model:
+Opus 4.8. Every model ran at 500 tokens and temperature 0 with thinking off,
+except GPT-5.5, a reasoning model whose hidden reasoning counts against its
+output limit:
 
-=====================================  ============  ===========  ==================
-model                                  token limit   temperature  reasoning
-=====================================  ============  ===========  ==================
-Claude Opus 4.6, Claude Sonnet 4.6     2,500         1            thinking, 1,024 budget
-GPT-5.5                                none          API default  effort "medium"
-all other models                       500           0            off
-=====================================  ============  ===========  ==================
+=====================================  ============  ===========
+model                                  token limit   temperature
+=====================================  ============  ===========
+GPT-5.5                                3,000         API default
+all other models                       500           0
+=====================================  ============  ===========
+
+(From the paper's run script: GPT-5.5 used the OpenAI Responses API with
+`max_output_tokens=3000` and no temperature, because it rejects one; a 500
+limit left its answers empty.)
 
 ``latest`` uses 2,000 tokens because 500 truncates recent reasoning models:
 Claude Opus 5.5 hit the limit on 68% of pilot calls at 500, and on none of
@@ -86,19 +91,13 @@ class Protocol:
         return self.default
 
 
-_CLAUDE_46_PAPER = GenerationSettings(max_tokens=2500, temperature=1.0,
-                                      thinking_budget=1024)
-
 PROTOCOLS: Dict[str, Protocol] = {
     "paper": Protocol(
         "paper", GenerationSettings(max_tokens=500, temperature=0.0),
         "claude-opus-4-8",
         "As published: each model's paper settings, Claude Opus 4.8 judge.",
         per_model=(
-            ("claude-opus-4-6", _CLAUDE_46_PAPER),
-            ("claude-sonnet-4-6", _CLAUDE_46_PAPER),
-            ("gpt-5.5", GenerationSettings(max_tokens=None, temperature=None,
-                                           reasoning_effort="medium")),
+            ("gpt-5.5", GenerationSettings(max_tokens=3000, temperature=None)),
         )),
     "latest": Protocol(
         "latest", GenerationSettings(max_tokens=2000, temperature=0.0),

@@ -100,17 +100,18 @@ test is called and in the judge:
 
 | `--protocol` | Generation settings | Judge | Use it to |
 |---|---|---|---|
-| `paper` | each model's settings in the paper (below) | Claude Opus 4.8 | reproduce the published numbers |
+| `paper` | 500 tokens, temperature 0, thinking off (GPT-5.5: 3,000 tokens) | Claude Opus 4.8 | reproduce the published numbers |
 | `latest` (default) | 2,000 tokens, temperature 0, thinking off, for every model | Claude Fable 5.2 | evaluate new models |
 
-The paper did not run every model the same way. `--protocol paper` applies
-each model's own settings:
+In the paper, every model ran at 500 tokens and temperature 0 with thinking
+off, except GPT-5.5. Its hidden reasoning counts against its output limit, so
+it got 3,000 tokens, at its default temperature since it rejects one.
+`--protocol paper` applies the same settings:
 
-| Model | Token limit | Temperature | Reasoning |
-|---|---|---|---|
-| Claude Opus 4.6, Claude Sonnet 4.6 | 2,500 | 1 | extended thinking, 1,024-token budget |
-| GPT-5.5 | none | API default | effort `medium` |
-| GPT-OSS 120B, Mistral Large 3, Qwen3-32B, and any other model | 500 | 0 | off |
+| Model | Token limit | Temperature |
+|---|---|---|
+| GPT-5.5 | 3,000 | API default |
+| Claude Opus 4.6, Claude Sonnet 4.6, GPT-OSS 120B, Mistral Large 3, Qwen3-32B, and any other model | 500 | 0 |
 
 `latest` uses 2,000 tokens for every model because 500 truncates recent
 reasoning models: Claude Opus 5.5 hit the limit on 68% of pilot calls at 500,

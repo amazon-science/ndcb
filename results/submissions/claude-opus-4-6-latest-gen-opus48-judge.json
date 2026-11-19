@@ -1,5 +1,5 @@
 {
-  "model": "Claude Opus 4.6 (latest generation settings)",
+  "model": "Claude Opus 4.6 (2,000 tokens)",
   "protocol": "custom",
   "generation_max_tokens": [
     2000
@@ -260,8 +260,8 @@
   "evaluated": "2026-11-19",
   "provider": "Amazon Bedrock (converse)",
   "protocol_deviations": [
-    "Generation with the `latest` settings: 2,000-token limit, thinking off, temperature 0. The paper ran this model with thinking on (1,024-token budget), a 2,500-token limit and temperature 1.",
-    "Judged by the paper's Claude Opus 4.8, so the score differs from the paper row only through the generation settings.",
+    "Generation limit 2,000 tokens instead of the paper's 500. Everything else matches the paper: temperature 0, thinking off, same prompts and three runs.",
+    "Judged by the paper's Claude Opus 4.8, so the difference from the paper row comes from the token limit (and run-to-run variation).",
     "Paper score for comparison: +0.52 [+0.49, +0.56]; this run: +0.58 [+0.55, +0.61]."
   ]
 }
