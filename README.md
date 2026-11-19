@@ -100,7 +100,7 @@ test is called and in the judge:
 
 | `--protocol` | Generation settings | Judge | Use it to |
 |---|---|---|---|
-| `paper` | 500 tokens, temperature 0, thinking off (GPT-5.5: 3,000 tokens) | Claude Opus 4.8 | reproduce the published numbers |
+| `paper` | 500 tokens, temperature 0, thinking off (GPT-5.5: 3,000 tokens) | Claude Opus 4.8 | run models with the paper's settings |
 | `latest` (default) | 2,000 tokens, temperature 0, thinking off, for every model | Claude Fable 5.2 | evaluate new models |
 
 In the paper, every model ran at 500 tokens and temperature 0 with thinking
@@ -123,13 +123,21 @@ still override a protocol's settings, but the score is then
 labelled `custom`. Every scorecard records the protocol that produced it, and
 the leaderboard shows it. **Compare scores only within one protocol.**
 
-To reproduce the paper:
+To run a model with the paper's settings:
 
 ```bash
 ndcb run   --protocol paper --model us.anthropic.claude-opus-4-6-v1 --out runs/opus46-paper
 ndcb judge --protocol paper --out runs/opus46-paper
 ndcb score --out runs/opus46-paper --model "Claude Opus 4.6"
 ```
+
+This package's scorer, run on the paper's stored model outputs, reproduces
+the published numbers exactly. Those outputs aren't released, but the
+resulting scorecards are in `results/paper/` (see
+[Reproducing the paper](#reproducing-the-paper)). A new run with
+`--protocol paper` uses the same settings but generates new responses, so its
+scores can differ from the paper's by run-to-run variation and by provider-side
+model updates.
 
 Settings common to both protocols:
 
